@@ -93,8 +93,7 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
     @Override
     public void showWeather(Locations locations) {
-        txtCelcius.setText(locations.getCountry());
-        Log.d(TAG, "showWeather: " + locations.getCountry());
+        txtCity.setText(locations.getName());
     }
 
     @Override

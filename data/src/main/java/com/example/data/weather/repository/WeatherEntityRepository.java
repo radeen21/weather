@@ -30,7 +30,6 @@ public class WeatherEntityRepository implements LocationsRepository {
     @Override
     public Observable<Locations> locationsObservable() {
         return weatherEntityDataFactory.createData().getWeather()
-                .startWith(Observable.just(new WeatherEntity()))
                 .map(weatherEntity -> weatherEntityMapper
                          .transform(weatherEntity));
     }

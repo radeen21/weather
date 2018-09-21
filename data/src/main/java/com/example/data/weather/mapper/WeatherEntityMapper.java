@@ -1,6 +1,7 @@
 package com.example.data.weather.mapper;
 
 import com.example.data.weather.WeatherEntity;
+import com.example.data.weather.repository.source.network.response.WeatherInquiryResponse;
 import com.example.domain.weather.Locations;
 
 import javax.inject.Inject;
@@ -13,7 +14,7 @@ public class WeatherEntityMapper {
     public WeatherEntityMapper() {
     }
 
-    public Locations transform(WeatherEntity weatherEntity) {
+    public Locations transform(WeatherInquiryResponse weatherEntity) {
         Locations location = null;
 
         if (weatherEntity != null) {

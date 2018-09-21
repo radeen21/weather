@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class GetWeather extends UseCase<Locations, Void> {
@@ -21,7 +22,7 @@ public class GetWeather extends UseCase<Locations, Void> {
 
     @Override
     protected Observable<Locations> buildUseCaseObservable(Void aVoid) {
-        return locationsRepository.locationsObservable().subscribeOn(Schedulers.io());
+        return locationsRepository.locationsObservable().observeOn(AndroidSchedulers.mainThread());
     }
 
 
