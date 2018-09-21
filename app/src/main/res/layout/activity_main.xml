@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_grayish_blue"
+    tools:context=".main.MainActivity"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="62dp">
+
+        <TextView
+            android:id="@+id/txt_celcius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:textSize="96sp"
+            android:gravity="center"
+            android:text="20"
+            />
+
+        <TextView
+            android:id="@+id/text_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Bangalore"
+            android:textSize="36sp"
+            />
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_top"
+        android:layout_marginTop="16dp"
+        android:background="@color/white">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        >
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="96dp"
+            android:layout_height="150dp"
+            android:indeterminateDrawable="@drawable/ic_loading_image"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Weather</string>
+
+    <!-- Path Font Assets -->
+    <string name="font_regular">fonts/roboto.regular.ttf</string>
+    <string name="font_black">fonts/roboto.black.ttf</string>
+    <string name="font_thin">fonts/Roboto-Thin.ttf</string>
+
+    <string name="no_connection_text">Something went wrong at our end!</string>
+
+</resources>
