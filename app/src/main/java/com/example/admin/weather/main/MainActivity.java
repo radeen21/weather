@@ -18,6 +18,7 @@ import com.example.admin.weather.di.components.WeatherComponent;
 import com.example.admin.weather.di.module.AccountModule;
 import com.example.admin.weather.di.module.WeatherModule;
 import com.example.admin.weather.view.adapter.WeatherAdapter;
+import com.example.domain.weather.ForeCastWeather;
 import com.example.domain.weather.Locations;
 
 import javax.inject.Inject;
@@ -92,8 +93,10 @@ public class MainActivity extends BaseActivity implements MainContract.View{
     }
 
     @Override
-    public void showWeather(Locations locations) {
-        txtCity.setText(locations.getName());
+    public void showWeather(ForeCastWeather foreCastWeather) {
+        txtCity.setText(foreCastWeather.getLocation().getName());
+        txtCelcius.setText(foreCastWeather.getCurrent().getFeelslike_c());
+//        txtCelcius.setText(foreCastWeather.getForecasts().getForecastday().get(0).getDate());
     }
 
     @Override

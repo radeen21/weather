@@ -8,6 +8,6 @@ import rx.Observable;
 
 public interface WeatherEntityDatas {
 
-    Observable<WeatherInquiryResponse> getWeather();
+    Observable<WeatherInquiryResponse> getForecastWeather();
 
 }

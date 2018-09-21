@@ -2,6 +2,7 @@ package com.example.admin.weather.main;
 
 import com.example.admin.weather.base.BasePresenter;
 import com.example.domain.DefaultSubscriber;
+import com.example.domain.weather.ForeCastWeather;
 import com.example.domain.weather.GetWeather;
 import com.example.domain.weather.Locations;
 
@@ -25,16 +26,16 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void doGetWeather() {
-        getWeather.execute(new DefaultSubscriber<Locations>(){
+        getWeather.execute(new DefaultSubscriber<ForeCastWeather>(){
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
             }
 
             @Override
-            public void onNext(Locations locations) {
-                super.onNext(locations);
-                getView().showWeather(locations);
+            public void onNext(ForeCastWeather foreCastWeather) {
+                super.onNext(foreCastWeather);
+                getView().showWeather(foreCastWeather);
             }
 
             @Override

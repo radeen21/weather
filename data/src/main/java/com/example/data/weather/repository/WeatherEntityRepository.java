@@ -3,6 +3,7 @@ package com.example.data.weather.repository;
 import com.example.data.weather.WeatherEntity;
 import com.example.data.weather.mapper.WeatherEntityMapper;
 import com.example.data.weather.repository.source.WeatherEntityDataFactory;
+import com.example.domain.weather.ForeCastWeather;
 import com.example.domain.weather.Locations;
 import com.example.domain.weather.repository.LocationsRepository;
 
@@ -28,9 +29,10 @@ public class WeatherEntityRepository implements LocationsRepository {
     }
 
     @Override
-    public Observable<Locations> locationsObservable() {
-        return weatherEntityDataFactory.createData().getWeather()
-                .map(weatherEntity -> weatherEntityMapper
-                         .transform(weatherEntity));
+    public Observable<ForeCastWeather> forecastWeatherObservable() {
+        return weatherEntityDataFactory.createData().getForecastWeather()
+                .map(weatherInquiryResponse -> weatherEntityMapper
+                .transform(weatherInquiryResponse));
     }
+
 }

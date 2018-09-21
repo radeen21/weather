@@ -1,8 +1,7 @@
 package com.example.data.weather.mapper;
 
-import com.example.data.weather.WeatherEntity;
 import com.example.data.weather.repository.source.network.response.WeatherInquiryResponse;
-import com.example.domain.weather.Locations;
+import com.example.domain.weather.ForeCastWeather;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -14,22 +13,17 @@ public class WeatherEntityMapper {
     public WeatherEntityMapper() {
     }
 
-    public Locations transform(WeatherInquiryResponse weatherEntity) {
-        Locations location = null;
+    public ForeCastWeather transform(WeatherInquiryResponse weatherEntity) {
+        ForeCastWeather foreCastWeather = null;
 
         if (weatherEntity != null) {
-            location = new Locations();
-            location.setName(weatherEntity.getLocation().getName());
-            location.setRegion(weatherEntity.getLocation().getRegion());
-            location.setCountry(weatherEntity.getLocation().getCountry());
-            location.setLat(weatherEntity.getLocation().getLat());
-            location.setLon(weatherEntity.getLocation().getLon());
-            location.setTz_id(weatherEntity.getLocation().getTz_id());
-            location.setLocaltime_epoch(weatherEntity.getLocation().getLocaltime_epoch());
-            location.setLocaltime(weatherEntity.getLocation().getLocaltime());
+            foreCastWeather = new ForeCastWeather();
+            foreCastWeather.setLocation(weatherEntity.getLocation());
+            foreCastWeather.setCurrent(weatherEntity.getCurrent());
+            foreCastWeather.setForecasts(weatherEntity.getForecast());
         }
 
-        return location;
+        return foreCastWeather;
 
     }
 }

@@ -4,27 +4,32 @@ import com.example.data.weather.WeatherEntity;
 import com.example.data.weather.model.Current;
 import com.example.data.weather.model.Forecast;
 import com.example.data.weather.model.Location;
+import com.example.domain.weather.Currents;
+import com.example.domain.weather.Forecasts;
+import com.example.domain.weather.Locations;
 
 import java.util.List;
 
 public class WeatherInquiryResponse  {
 
-    private Location location;
+    private Locations location;
 
-    private Current current;
+    private Currents current;
 
-    private Forecast forecast;
+    private Forecasts forecast;
 
-    public Location getLocation() {
+    public Locations getLocation() {
         return location;
     }
 
-    public Current getCurrent() {
+    public Currents getCurrent() {
         return current;
     }
 
-    public Forecast getForecast() {
+    public Forecasts getForecast() {
         return forecast;
     }
+
+
 
 }

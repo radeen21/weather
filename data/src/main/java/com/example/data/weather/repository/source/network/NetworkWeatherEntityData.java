@@ -26,9 +26,9 @@ public class NetworkWeatherEntityData extends BaseNetwork<WeatherApi> implements
     }
 
     @Override
-    public Observable<WeatherInquiryResponse> getWeather() {
+    public Observable<WeatherInquiryResponse> getForecastWeather() {
         return getNetworkService()
-                .getLocations(
+                .getForecastWeather(
                         "af24415233474fd29af42509182308",
                         "jakarta",
                         1).subscribeOn(Schedulers.io());

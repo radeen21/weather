@@ -15,7 +15,7 @@ public class WeatherModule {
 
     @Provides
     @PerActivity
-    @Named("getWeather")
+    @Named("getForeCastWeather")
         GetWeather provideWeather(LocationsRepository promoRepository) {
             return new GetWeather(promoRepository);
     }
