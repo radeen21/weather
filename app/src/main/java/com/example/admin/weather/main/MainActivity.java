@@ -1,13 +1,8 @@
 package com.example.admin.weather.main;
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,16 +10,14 @@ import com.example.admin.weather.R;
 import com.example.admin.weather.base.BaseActivity;
 import com.example.admin.weather.di.components.DaggerWeatherComponent;
 import com.example.admin.weather.di.components.WeatherComponent;
-import com.example.admin.weather.di.module.AccountModule;
 import com.example.admin.weather.di.module.WeatherModule;
+import com.example.admin.weather.model.ForecastWeatherModel;
 import com.example.admin.weather.view.adapter.WeatherAdapter;
 import com.example.domain.weather.ForeCastWeather;
-import com.example.domain.weather.Locations;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements MainContract.View{
 
@@ -49,18 +42,6 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
     private WeatherComponent weatherComponent;
 
-//    String[] days = {"senin", "selasa", "rabu", "kamis"};
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        ButterKnife.bind(this);
-//
-//        getWeathers();
-//        setup();
-//    }
-
     @Override
     public int getLayout() {
         return R.layout.activity_main;
@@ -68,6 +49,7 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
     @Override
     public void setup() {
+        init();
         injector();
         bindVIewToPresenter();
         getWeathers();
@@ -92,11 +74,24 @@ public class MainActivity extends BaseActivity implements MainContract.View{
         weatherComponent.inject(this);
     }
 
+    private void init() {
+        weatherAdapter = new WeatherAdapter(this);
+        recyclerDay.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
+        recyclerDay.setAdapter(weatherAdapter);
+    }
+
     @Override
     public void showWeather(ForeCastWeather foreCastWeather) {
         txtCity.setText(foreCastWeather.getLocation().getName());
-        txtCelcius.setText(foreCastWeather.getCurrent().getFeelslike_c());
-//        txtCelcius.setText(foreCastWeather.getForecasts().getForecastday().get(0).getDate());
+        txtCelcius.setText(foreCastWeather.getCurrent().getFeelslike_c() + "\u00B0");
+    }
+
+    @Override
+    public void loadForecast(ForecastWeatherModel forecastWeatherModels) {
+        weatherAdapter.addForecast(forecastWeatherModels.getForecastday());
+
+        recyclerDay.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -109,15 +104,4 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
     }
 
-//    private void setup() {
-//        int resId = R.anim.slide_out_bottom;
-//
-//
-//        weatherAdapter = new WeatherAdapter(this,days);
-//        recyclerDay.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerDay.setAdapter(weatherAdapter);
-//        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this,resId);
-//        recyclerDay.setLayoutAnimation(animation);
-//        this.overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_top);
-//    }
 }

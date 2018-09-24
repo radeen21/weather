@@ -1,9 +1,10 @@
-package com.example.domain.weather;
+package com.example.admin.weather.model;
 
-import java.util.ArrayList;
+import com.example.domain.weather.Forecastday;
+
 import java.util.List;
 
-public class Forecasts {
+public class ForecastWeatherModel {
 
     private List<Forecastday> forecastday;
 
@@ -11,7 +12,7 @@ public class Forecasts {
         return forecastday;
     }
 
-    public void setForecastday(ArrayList<Forecastday> forecastday) {
+    public void setForecastday(List<Forecastday> forecastday) {
         this.forecastday = forecastday;
     }
 }

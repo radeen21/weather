@@ -9,6 +9,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.admin.weather.R;
+import com.example.admin.weather.model.ForecastWeatherModel;
+import com.example.data.weather.model.Forecast;
+import com.example.domain.weather.Forecastday;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,11 +24,11 @@ import butterknife.ButterKnife;
 public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private String[] days;
+    private List<Forecastday> forecastdays;
 
-    public WeatherAdapter(Context context, String[] days) {
+    public WeatherAdapter(Context context) {
         this.context = context;
-        this.days = days;
+        forecastdays = new ArrayList<>();
     }
 
     @Override
@@ -33,12 +41,20 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((Item) holder).txtDays.setText(days[position]);
+        Forecastday forecastday = forecastdays.get(position);
+        ((Item) holder).txtDays.setText(forecastday.getDate());
     }
 
     @Override
     public int getItemCount() {
-        return days.length;
+        if (null == forecastdays)
+            return 0;
+        return forecastdays.size();
+    }
+
+    public void addForecast(List<Forecastday> forecastDay) {
+        this.forecastdays = forecastDay;
+        notifyDataSetChanged();
     }
 
     public class Item extends RecyclerView.ViewHolder {
@@ -50,5 +66,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+
+        public void bindData(ForecastWeatherModel forecastWeatherModel) {
+//            txtDays.setText(forecastWeatherModel.getForecasts().getForecastday());
+        }
     }
+
+
 }
