@@ -7,8 +7,10 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.weather.R;
 import com.example.admin.weather.model.ForecastWeatherModel;
 import com.example.admin.weather.utils.CalendarUtils;
@@ -49,7 +51,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         Forecastday forecastday = forecastdays.get(position);
 
         ((Item) holder).txtDays.setText(CalendarUtils.getDayFromDateString(forecastday.getDate()));
-        ((Item) holder).txtCelcius.setText(forecastday.getDay().getAvgtempC() + " C ");
+        String tempC = forecastday.getDay().getAvgtempC();
+        if (tempC.contains(".")) {
+            tempC = tempC.substring(0, tempC.indexOf("."));
+        }
+        ((Item) holder).txtCelcius.setText(tempC + "\u00B0" +" C");
+        Glide.with(context).
+                load("https:" + forecastday.getDay().getCondition().getIcon()).
+                into(((Item) holder).imgIconWeather);
+        ((Item) holder).txtMessageWeather.setText(forecastday.getDay().getCondition().getText());
     }
 
     @Override
@@ -71,6 +81,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         @BindView(R.id.txt_celcius)
         TextView txtCelcius;
+
+        @BindView(R.id.img_icon_weather)
+        ImageView imgIconWeather;
+
+        @BindView(R.id.txt_message_weather)
+        TextView txtMessageWeather;
 
         public Item(View itemView) {
             super(itemView);

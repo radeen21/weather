@@ -108,8 +108,13 @@ public class MainActivity extends BaseActivity implements MainContract.View{
     @Override
     public void loadForecast(ForecastWeatherModel forecastWeatherModels) {
         weatherAdapter.addForecast(forecastWeatherModels.getForecastday());
+        progressBar.setVisibility(View.GONE);
 
         recyclerDay.setVisibility(View.VISIBLE);
+        txtCelcius.setVisibility(View.VISIBLE);
+        txtCity.setVisibility(View.VISIBLE);
+        txtMessage.setVisibility(View.VISIBLE);
+        ivIcon.setVisibility(View.VISIBLE);
     }
 
     @Override

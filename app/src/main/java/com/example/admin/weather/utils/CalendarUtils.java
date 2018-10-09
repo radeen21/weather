@@ -9,8 +9,8 @@ public class CalendarUtils {
 
     public static String getDayFromDateString(String stringDate)
     {
-        String[] daysArray = new String[] {"sunday","monday","tuesday","wednesday"
-                ,"thursday","friday","saturday"};
+        String[] daysArray = new String[] {"Sunday","Monday","Tuesday","Wednesday"
+                ,"Thursday","Friday","Saturday"};
         String day = "";
 
         int dayOfWeek =0;
