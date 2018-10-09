@@ -8,7 +8,7 @@ public class Current {
 
     private String last_updated;
 
-    private String temp_c;
+    private Double temp_c;
 
     private String temp_f;
 
@@ -60,11 +60,11 @@ public class Current {
         this.last_updated = last_updated;
     }
 
-    public String getTemp_c() {
+    public Double getTemp_c() {
         return temp_c;
     }
 
-    public void setTemp_c(String temp_c) {
+    public void setTemp_c(Double temp_c) {
         this.temp_c = temp_c;
     }
 

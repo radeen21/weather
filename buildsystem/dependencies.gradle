@@ -22,6 +22,7 @@ ext {
     advancedRVVersion = '0.10.2'
     butterknifeVersion = '8.4.0'
     gsonVersion = '2.8.0'
+    glideVersion = '3.7.0'
 
     //Rx
     rxAndroidVersion = '1.2.1'
@@ -69,7 +70,8 @@ ext {
             rxBindingDesign    : [group: 'com.jakewharton.rxbinding', name: 'rxbinding-design', version: rxBindingVersion],
             rxLint             : [group: 'nl.littlerobots.rxlint', name: 'rxlint', version: rxLintVersion],
             rxProguard         : [group: 'com.artemzin.rxjava', name: 'proguard-rules', version: rxJavaProguardRulesVersion],
-            rxPreferences      : [group: 'com.f2prateek.rx.preferences', name: 'rx-preferences', version: rxPreferencesVersion]
+            rxPreferences      : [group: 'com.f2prateek.rx.preferences', name: 'rx-preferences', version: rxPreferencesVersion],
+            glide              : [group: 'com.github.bumptech.glide', name: 'glide', version: glideVersion]
     ]
 
     def testLibs = [
@@ -98,7 +100,8 @@ ext {
             [configuration: "implementation", dependency: libs.rxBindingAppCompat],
             [configuration: "implementation", dependency: libs.rxBindingDesign],
             [configuration: "implementation", dependency: libs.rxLint],
-            [configuration: "implementation", dependency: libs.rxProguard]
+            [configuration: "implementation", dependency: libs.rxProguard],
+            [configuration: "implementation", dependency: libs.glide]
 
     ]
 

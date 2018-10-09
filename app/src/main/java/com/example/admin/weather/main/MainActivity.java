@@ -3,9 +3,11 @@ package com.example.admin.weather.main;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.admin.weather.R;
 import com.example.admin.weather.base.BaseActivity;
 import com.example.admin.weather.di.components.DaggerWeatherComponent;
@@ -14,6 +16,8 @@ import com.example.admin.weather.di.module.WeatherModule;
 import com.example.admin.weather.model.ForecastWeatherModel;
 import com.example.admin.weather.view.adapter.WeatherAdapter;
 import com.example.domain.weather.ForeCastWeather;
+
+import java.text.DecimalFormat;
 
 import javax.inject.Inject;
 
@@ -34,6 +38,12 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
     @BindView(R.id.text_city)
     TextView txtCity;
+
+    @BindView(R.id.iv_icon)
+    ImageView ivIcon;
+
+    @BindView(R.id.text_message)
+    TextView txtMessage;
 
     private WeatherAdapter weatherAdapter;
 
@@ -84,7 +94,15 @@ public class MainActivity extends BaseActivity implements MainContract.View{
     @Override
     public void showWeather(ForeCastWeather foreCastWeather) {
         txtCity.setText(foreCastWeather.getLocation().getName());
-        txtCelcius.setText(foreCastWeather.getCurrent().getFeelslike_c() + "\u00B0");
+        String tempC = foreCastWeather.getCurrent().getTemp_c();
+        if (tempC.contains(".")) {
+            tempC = tempC.substring(0, tempC.indexOf("."));
+        }
+        txtCelcius.setText(tempC + "\u00B0");
+        txtMessage.setText(foreCastWeather.getCurrent().getCondition().getText());
+        Glide.with(this).
+                load("https:" + foreCastWeather.getCurrent().getCondition().getIcon()).
+                into(ivIcon);
     }
 
     @Override
